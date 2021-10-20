@@ -14,31 +14,62 @@
 // left = -1
 // advance = =1 OR -1
 
-function spaceship(direction){
+// returns the following format: "{x: X, y: Y, direction: 'DIRECTION'}"
+
+function my_spaceship(direction){
     var x = 0;
     var y = 0;
+    var orientation = 0;
+    let finalOrientation = "'up'";
+    //position 0 = up
+    // poistion 1 = right
+    // position 2 = down
+    // position 3 = left
 
-
-    // iterate throug hthe string given
     for (i = 0; i < direction.length; i ++){
-        if (direction[i] = "R"){
-            x++;
-        }else if (direction i = "L"){
-            x--;
+        if (direction[i] === "R"){
+            orientation = orientation + 1;
+            if(orientation === -1){
+                orientation = 0;
+            }
+        }else if (direction[i] === "L"){
+            if(orientation === 4 ){
+                orientation = 0;
+            }
+            orientation = orientation - 1;
         }else{
-            
+            if (orientation === 0 || orientation === 4){
+                //if up, then add 1 to y
+                y--;
+            } else if (orientation == 2){
+                 // if down sub 1 from y
+                 y++;
+            } else if (orientation == 1){
+                // if face right add 1 to x
+                x++;
+            }else if (orientation == 3){
+                // if face left sub 1 from x
+                x--;
+            }  
         }
+        // console.log(orientation);
+        
+        if (orientation == 0 || orientation === 4){
+            finalOrientation = "'up'";
+        } else if (orientation == 2 || orientation == -2){
+            finalOrientation = "'down'";
+        }else if (orientation == 1 || orientation == -3 ){
+            finalOrientation = "'right'";
+        } else if (orientation == 3 || orientation == -1){
+            finalOrientation = "'left'";
+        } else {
+            finalOrientation = "'up'"
+        }
+
     }
 
-        // if the char is r +1 to x
+    var test = "{x: " + x + ", y: " + y + ", direction: " + finalOrientation + "}";
 
-
-        // else if char is l -1 to x 
-
-
-        // else move forward
-
-
-
-
+    return test;
 };
+
